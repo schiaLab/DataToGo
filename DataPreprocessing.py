@@ -524,6 +524,14 @@ class DataWareHouse:
 
         self.dataDict[tag] = data
 
+        try:
+
+            self.testDict[tag] = data
+
+        except:
+
+            return None
+
 
 
     def tagChange(self):
@@ -541,6 +549,19 @@ class DataWareHouse:
         del self.dataDict[tag]
 
         self.dataDict[newTag] = data
+
+        try:
+            data = self.testDict[tag]
+
+            del self.testDict[tag]
+
+            self.testDict[newTag] = data
+
+        except:
+
+            return None
+
+
 
     def delData(self):
 
@@ -564,6 +585,14 @@ class DataWareHouse:
 
             del self.dataDict[tag]
 
+
+            try:
+
+                del self.testDict[tag]
+
+            except:
+
+                return None
 
 
 

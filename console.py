@@ -25,6 +25,40 @@ def sdiv():
 
 
 
+def dataWareHouseControl(dataWareHouse):
+
+    print("List of Tags / 태그 목록")
+    print(dataWareHouse.dataDict.keys())
+
+    while True:
+
+        command = input("me for merging dataset/ de for deleting dataset / ch for chaning tag: \n"
+                        "데이터셋 병합은 me / 데이터셋 제거는 de / 데이터셋 태그 변경은 ch: ")
+
+        if command == "me":
+
+
+            dataWareHouse.mergeDataset()
+
+
+            break
+        elif command == "de":
+
+            dataWareHouse.delData()
+            break
+
+        elif command == "ch":
+
+            dataWareHouse.tagChange()
+
+            break
+        else:
+
+            print("Wrong Input / 잘못 입력하셨습니다.")
+
+
+
+
 def commandReader(questionListNum, languageID):
 
     commandCode = questionListNum * 100
