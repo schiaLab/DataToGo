@@ -32,8 +32,8 @@ def dataWareHouseControl(dataWareHouse):
 
     while True:
 
-        command = input("me for merging dataset/ de for deleting dataset / ch for chaning tag: \n"
-                        "데이터셋 병합은 me / 데이터셋 제거는 de / 데이터셋 태그 변경은 ch: ")
+        command = input("me for merging dataset/ de for deleting dataset / ch for chaning tag (Enter to Exit): \n"
+                        "데이터셋 병합은 me / 데이터셋 제거는 de / 데이터셋 태그 변경은 ch (엔터로 종료): ")
 
         if command == "me":
 
@@ -41,17 +41,20 @@ def dataWareHouseControl(dataWareHouse):
             dataWareHouse.mergeDataset()
 
 
-            break
         elif command == "de":
 
             dataWareHouse.delData()
-            break
+
 
         elif command == "ch":
 
             dataWareHouse.tagChange()
 
+
+        elif command == "":
+
             break
+
         else:
 
             print("Wrong Input / 잘못 입력하셨습니다.")
@@ -173,8 +176,10 @@ while True:
 
     testData = None
 
+    dataWareHouseControl(mainData)
 
     print("Data Preprocessing Sequence \n 데이터 전처리 과정 실행")
+
 
     dp.dataPreprocessingInterface(mainData)
 
