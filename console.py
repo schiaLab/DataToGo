@@ -5,7 +5,7 @@ import sys
 
 lid = None
 
-ver = "0.0.1"
+ver = "0.0.4"
 
 
 questionNumDict = {"main":1}
@@ -25,39 +25,6 @@ def sdiv():
 
 
 
-def dataWareHouseControl(dataWareHouse):
-
-    print("List of Tags / 태그 목록")
-    print(dataWareHouse.dataDict.keys())
-
-    while True:
-
-        command = input("me for merging dataset/ de for deleting dataset / ch for chaning tag (Enter to Exit): \n"
-                        "데이터셋 병합은 me / 데이터셋 제거는 de / 데이터셋 태그 변경은 ch (엔터로 종료): ")
-
-        if command == "me":
-
-
-            dataWareHouse.mergeDataset()
-
-
-        elif command == "de":
-
-            dataWareHouse.delData()
-
-
-        elif command == "ch":
-
-            dataWareHouse.tagChange()
-
-
-        elif command == "":
-
-            break
-
-        else:
-
-            print("Wrong Input / 잘못 입력하셨습니다.")
 
 
 
@@ -104,11 +71,11 @@ def commandReader(questionListNum, languageID):
 
 
 
-def commandRun(commandCode, data, testData=None, dataY=None, testDataY=None):
+def commandRun(commandCode, dataWareHouse):
 
     if commandCode == 100:
 
-        vi.projectRun(lid, data)
+        vi.projectRun(lid, dataWareHouse)
 
 
 
@@ -116,7 +83,7 @@ def commandRun(commandCode, data, testData=None, dataY=None, testDataY=None):
     elif commandCode == 101:
 
 
-        mlf.projectRun(lid, data, testData, dataY, testDataY)
+        mlf.projectRun(lid, dataWareHouse)
 
 
 
@@ -176,7 +143,6 @@ while True:
 
     testData = None
 
-    dataWareHouseControl(mainData)
 
     print("Data Preprocessing Sequence \n 데이터 전처리 과정 실행")
 
@@ -188,7 +154,7 @@ while True:
 
 
 
-    commandRun(commandReader(1, lid), data, testData)
+    commandRun(commandReader(1, lid), mainData)
 
 
     command2 = input("'exit' to Exit Program. Enter to continue using. / exit를 입력해 프로그램을 종료하십시오. 기존 데이터로 계속 진행하려면 엔터를 누르세요.")

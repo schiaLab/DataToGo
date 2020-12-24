@@ -397,8 +397,18 @@ def projectRun(lid, dataWareHouse):
     print("selected data / 선택된 데이터: ")
     print(data.head())
 
+    while True:
 
-    functionNum = functionNumGenerator(lid)
+        try:
+
+            functionNum = functionNumGenerator(lid)
+
+            break
+        except:
+
+            print("잘못된 입력")
+
+            continue
 
     instruction(functionNum, lid)
 

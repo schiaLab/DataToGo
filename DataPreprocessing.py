@@ -23,6 +23,40 @@ def sdiv():
     print("-"*10)
 
 
+def dataWareHouseControl(dataWareHouse):
+    div()
+
+    print("List of Tags / 태그 목록")
+    print(dataWareHouse.dataDict.keys())
+
+    while True:
+
+        command = input("me for merging dataset/ de for deleting dataset / ch for chaning tag (Enter to Exit): \n"
+                        "데이터셋 병합은 me / 데이터셋 제거는 de / 데이터셋 태그 변경은 ch (엔터로 종료): ")
+
+        if command == "me":
+
+            dataWareHouse.mergeDataset()
+
+
+        elif command == "de":
+
+            dataWareHouse.delData()
+
+
+        elif command == "ch":
+
+            dataWareHouse.tagChange()
+
+
+        elif command == "":
+
+            break
+
+        else:
+
+            print("Wrong Input / 잘못 입력하셨습니다.")
+
 
 def dataPreprocessingInterface(dataWareHouse):
 
@@ -31,7 +65,6 @@ def dataPreprocessingInterface(dataWareHouse):
 
 
 
-    div()
 
     while True:
 
@@ -39,8 +72,8 @@ def dataPreprocessingInterface(dataWareHouse):
 
         command = input("Are you preprocessing your data for Machine Learning or other models? y for yes/ n for no: "
                         "\n (If you are, you should divide your dataset. K-fold cross validation is in development.)\n\n"
-                        "기계학습 및 기타 모델에서의 적용을 위해서 데이터 전처리를 하는 것인가요? (예:y / 아니요:n): \n"
-                        "(만약 그렇다면, 데이터셋을 학습용과 검증용으로 분리해야 합니다. k-fold 교차 검증은 개발중에 있습니다.)")
+                        "기계학습 및 기타 모델에서의 적용을 위해서 데이터 전처리를 하는 것인가요? (예:y / 아니요:n) \n"
+                        "(만약 그렇다면, 데이터셋을 학습용과 검증용으로 분리해야 합니다. k-fold 교차 검증은 개발중에 있습니다.): ")
 
         if command == "y":
 
@@ -63,6 +96,9 @@ def dataPreprocessingInterface(dataWareHouse):
 
     while True:
 
+
+        dataWareHouseControl(dataWareHouse)
+
         div()
 
         print("List of tags / 태그 리스트")
@@ -71,7 +107,12 @@ def dataPreprocessingInterface(dataWareHouse):
         newTag = ""
 
 
-        tag = input("Which data tag will you choose? / 선택하고자 하는 데이터의 태그를 입력하십시오: ")
+        tag = input("Which data tag will you choose? (For data visualization and machine learning, press Enter)"
+                    "\n 선택하고자 하는 데이터의 태그를 입력하십시오 (데이터 시각화 및 기계학습 진행을 위해선 엔터): ")
+
+        if tag == "":
+
+            break
 
         data = dataWareHouse.dataDict[tag]
 
@@ -102,8 +143,8 @@ def dataPreprocessingInterface(dataWareHouse):
 
            while True:
 
-                command2 = input("re for revering row order / mv for missing value management / ad for adding column using dataset data or an input: \n"
-                                 "열 순서 역순은 re / 결측치 관리는 mv / 입력값 및 데이터셋 내부 데이터로 열을 추가하려는 경우 ad 를 입력하십시오: ")
+                command2 = input("re for revering row order / mv for missing value management / ad for adding column using dataset data or an input (Enter to go home) \n"
+                                 "열 순서 역순은 re / 결측치 관리는 mv / 입력값 및 데이터셋 내부 데이터로 열을 추가하려는 경우 ad 를 입력하십시오 (엔터를 눌러 홈으로): ")
 
 
                 if command2 == "re":
@@ -199,7 +240,14 @@ def dataPreprocessingInterface(dataWareHouse):
 
                                 break
 
+                        elif command2 == "":
 
+                            break
+
+                        else:
+
+                            print("Wrong Input / 잘못된 입력")
+                            continue
 
 
                     break
@@ -212,8 +260,8 @@ def dataPreprocessingInterface(dataWareHouse):
 
             while True:
 
-                command2 = input("au for autoencoder / da for date preprocessing / no for normalizing / ot for onehotencoding \n"
-                                 "오토인코더는 au / 날짜 전처리는 da / 정규화는 no / 원핫인코딩은 ot: ")
+                command2 = input("gr for groupby / au for autoencoder / da for date preprocessing / no for normalizing / ot for onehotencoding (Enter to Home)\n"
+                                 "그룹핑은 gr / 오토인코더는 au / 날짜 전처리는 da / 정규화는 no / 원핫인코딩은 ot (엔터로 홈): ")
 
 
                 if command2 == "au":
@@ -253,7 +301,11 @@ def dataPreprocessingInterface(dataWareHouse):
 
                             break
 
+                elif command2 == "gr":
 
+                    data3, data4 = groupBy(data, data2)
+
+                    newTag = input("What is the tag name of the new extracted data? / 추출한 데이터의 태그를 입력해주세요: ")
 
                 elif command2 == "no":
 
@@ -290,6 +342,10 @@ def dataPreprocessingInterface(dataWareHouse):
 
                         break
 
+                elif command2 == "":
+
+                    break
+
                 else:
 
                     print("Wrong input / 잘못된 입력")
@@ -307,8 +363,8 @@ def dataPreprocessingInterface(dataWareHouse):
 
             while True:
 
-                command2 = input("ci for custom indexing / fi for filtering / pca for PCA \n"
-                                 "재량 인덱싱은 ci / 조건을 이용한 필터링은 fi / PCA 는 pca(모두 소문자)를 입력해 주세요:")
+                command2 = input("ci for custom indexing / fi for filtering / pca for PCA (Enter to Home)\n"
+                                 "재량 인덱싱은 ci / 조건을 이용한 필터링은 fi / PCA 는 pca(모두 소문자)를 입력해 주세요 (엔터 눌러서 홈으로): ")
 
 
                 if command2 == "ci":
@@ -345,7 +401,9 @@ def dataPreprocessingInterface(dataWareHouse):
 
 
 
+                elif command2 == "":
 
+                    break
 
                 else:
 
@@ -482,7 +540,7 @@ class DataWareHouse:
 
             if self.dataDict[tag1].iloc[0, :] != self.dataDict[tag2].iloc[0, :]:
 
-                print("Same row number detected. merging data horizontally... / 같은 행의 수가 감지되었습니다. 공 열을 기준으로 병합합니다.")
+                print("Same row number detected. merging data horizontally... / 같은 행의 수가 감지되었습니다. 공통 열을 기준으로 병합합니다.")
 
                 self.dataDict[tag] = merge(data1=self.dataDict[tag1], data2=self.dataDict[tag2], tag1=tag1, tag2=tag2)
 
@@ -693,7 +751,14 @@ def dateCleaner(data, testData):
         try:
 
             date = data.loc[:, col].copy()
-            testDate = testData.loc[:, col].copy()
+
+            try:
+
+                testDate = testData.loc[:, col].copy()
+
+            except:
+
+                testDate = None
 
         except:
 
@@ -734,7 +799,10 @@ def dateCleaner(data, testData):
         if dateFrame is None:
 
             dateFrame = date.str.split(word, expand=True)
-            testDateFrame = testDate.str.split(word, expand=True)
+
+            if not testDate is None:
+
+                testDateFrame = testDate.str.split(word, expand=True)
 
         else:
 
@@ -753,18 +821,19 @@ def dateCleaner(data, testData):
             dateFrame = dateFrame.drop("index", axis=1)
 
 
+            if not testDate is None:
 
-            testDateFrame = testDateFrame.drop(targetCol, axis=1)
+                testDateFrame = testDateFrame.drop(targetCol, axis=1)
 
-            testDateFrame2 = date.str.split(word, expand=True)
+                testDateFrame2 = date.str.split(word, expand=True)
 
-            testDateFrame = testDateFrame.reset_index()
+                testDateFrame = testDateFrame.reset_index()
 
-            testDateFrame2 = testDateFrame2.reset_index()
+                testDateFrame2 = testDateFrame2.reset_index()
 
-            testDateFrame = pd.merge(testDateFrame, testDateFrame2, on="index")
+                testDateFrame = pd.merge(testDateFrame, testDateFrame2, on="index")
 
-            testDateFrame = testDateFrame.drop("index", axis=1)
+                testDateFrame = testDateFrame.drop("index", axis=1)
 
 
 
@@ -790,10 +859,12 @@ def dateCleaner(data, testData):
 
             date = result
 
-            result2 = testDateFrame.iloc[:, sequence[0]] + "/" + testDateFrame.iloc[:, sequence[1]] + "/" + dateFrame.iloc[:,
-                                                                                                   sequence[2]]
+            if not testDate is None:
 
-            testDate = result2
+                result2 = testDateFrame.iloc[:, sequence[0]] + "/" + testDateFrame.iloc[:, sequence[1]] + "/" + dateFrame.iloc[:,
+                                                                                                       sequence[2]]
+
+                testDate = result2
 
             break
 
@@ -803,7 +874,9 @@ def dateCleaner(data, testData):
 
             date = dateFrame.loc[:, targetCol]
 
-            testDate = testDateFrame.loc[:, targetCol]
+            if not testDate is None:
+
+                testDate = testDateFrame.loc[:, targetCol]
 
 
 
@@ -814,13 +887,16 @@ def dateCleaner(data, testData):
               "날짜 정제 과정 완료. 결과 표시: \n", date.loc[0:3])
 
     command = input("Is all data is preserved? (y for yes/n for no):\n"
-                    "날짜 데이터가 잘 남아 있습니까? (예:y/아니요:n):")
+                    "날짜 데이터가 잘 남아 있습니까? (예:y/아니요:n): ")
 
     if command == "y":
 
         data.loc[:, col] = date
 
-        testData.loc[:, col] = testDate
+
+        if not testDate is None:
+
+            testData.loc[:, col] = testDate
 
         print("Saved. Closing Date Cleaning Protocol...\n적용 완료. 날짜 정제 과정을 완전 종료합니다.")
 
@@ -856,6 +932,8 @@ def dateDivider(data, testData):
 
     if testData is None:
 
+        div()
+
 
         targetCol = input("What is the name of date Column?: \n날짜 열의 이름이 무엇입니까?: ")
 
@@ -874,12 +952,12 @@ def dateDivider(data, testData):
 
         print("-"*10)
 
-        print("Date Divided. Displaying Results... \n 날짜 분리 완료. 결과를 송출합니다:")
+        print("Date Divided. Displaying Results... \n 날짜 분리 완료. 결과를 송출합니다.")
 
         print(data.head())
 
 
-        print("Closing merge protocol... / 날짜 분리 과정 종료.")
+        sdiv()
 
     else:
 
@@ -995,7 +1073,7 @@ def backDoorBoolMasking(data, columnName, condition):
 
 
 
-def merge(data1, data2, tag1, tag2, testData1, testData2):
+def merge(data1, data2, tag1, tag2, testData1=None, testData2=None):
     print("Merging two dataset. If there is a column in each dataset with same name and different values, you may not recognize which one was which."
         "\n\n 두 데이터셋을 병합합니다. 만약 두 데이터셋에 같은 이름의 열이 한 쌍 이상 있으면 이후 구별을 못할 수 있습니다.")
 
@@ -1023,8 +1101,9 @@ def merge(data1, data2, tag1, tag2, testData1, testData2):
             data1 = data1.rename({col: "%s %s"%(tag1, col)}, axis=1)
             data2 = data2.rename({col: "%s %s" %(tag2, col)}, axis=1)
 
-            testData1 = testData1.rename({col: "%s %s" % (tag1, col)}, axis=1)
-            testData2 = testData2.rename({col: "%s %s" % (tag2, col)}, axis=1)
+            if not testData1 is None:
+                testData1 = testData1.rename({col: "%s %s" % (tag1, col)}, axis=1)
+                testData2 = testData2.rename({col: "%s %s" % (tag2, col)}, axis=1)
 
         elif command == "n":
 
@@ -1058,19 +1137,21 @@ def merge(data1, data2, tag1, tag2, testData1, testData2):
 
         result = result.drop("index", axis=1)
 
-        testData11 = testData1.reset_index()
+        if not testData1 is None:
+            testData11 = testData1.reset_index()
 
-        testData22 = testData2.reset_index()
+            testData22 = testData2.reset_index()
 
-        result2 = pd.merge(testData11, testData22, on="index")
+            result2 = pd.merge(testData11, testData22, on="index")
 
-        result2 = result2.drop("index", axis=1)
+            result2 = result2.drop("index", axis=1)
 
     elif on != "" and len(data1.iloc[:, 0]) == len(data2.iloc[:, 0]) and data1.index == data2.index:
 
         result = pd.merge(data1, data2, left_index=True)
 
-        result2 = pd.merge(testData1, testData2, left_index=True)
+        if not testData1 is None:
+            result2 = pd.merge(testData1, testData2, left_index=True)
 
     elif on is None and len(data1.iloc[:, 0]) != len(data2.iloc[:, 0]):
 
@@ -1084,7 +1165,9 @@ def merge(data1, data2, tag1, tag2, testData1, testData2):
 
         result = pd.merge(data1, data2, on=on)
 
-        result2 = pd.merge(testData1, testData2, on=on)
+        if not testData1 is None:
+
+            result2 = pd.merge(testData1, testData2, on=on)
 
 
     print("merge complete. Displaying result... / 병합 완료. 결과 송출중: \n")
@@ -1409,7 +1492,8 @@ def colDelete(data, testData):
 
             data.drop(colName, axis=1)
 
-            testData.drop(colName, axis=1)
+            if not testData is None:
+                testData.drop(colName, axis=1)
 
         else:
 
@@ -1445,19 +1529,25 @@ def colCalculation(data, testData):
 
                 data[colName] = data.loc[:, colName1] + data.loc[:, colName2]
 
-                testData[colName] = testData.loc[:, colName1] + testData.loc[:, colName2]
+                if not testData is None:
+
+                    testData[colName] = testData.loc[:, colName1] + testData.loc[:, colName2]
 
             elif mode == "-":
 
                 data[colName] = data.loc[:, colName1] - data.loc[:, colName2]
 
-                testData[colName] = testData.loc[:, colName1] - testData.loc[:, colName2]
+                if not testData is None:
+                    testData[colName] = testData.loc[:, colName1] - testData.loc[:, colName2]
 
             elif mode == "*":
 
                 data[colName] = data.loc[:, colName1] * data.loc[:, colName2]
 
-                testData[colName] = testData.loc[:, colName1] * testData.loc[:, colName2]
+                if not testData is None:
+
+
+                    testData[colName] = testData.loc[:, colName1] * testData.loc[:, colName2]
 
             elif mode == "/":
 
@@ -1467,7 +1557,9 @@ def colCalculation(data, testData):
 
                 data[colName] = data.loc[:, colName1] / data.loc[:, colName2]
 
-                testData[colName] = testData.loc[:, colName1] / testData.loc[:, colName2]
+                if not testData is None:
+
+                    testData[colName] = testData.loc[:, colName1] / testData.loc[:, colName2]
 
 
 
@@ -1509,19 +1601,22 @@ def colbyNumCalculation(data, testData):
 
                 data[colName] = data.loc[:, colName1] + number
 
-                testData[colName] = testData.loc[:, colName1] + number
+                if not testData is None:
+                    testData[colName] = testData.loc[:, colName1] + number
 
             elif mode == "-":
 
                 data[colName] = data.loc[:, colName1] - number
 
-                testData[colName] = testData.loc[:, colName1] - number
+                if not testData is None:
+                    testData[colName] = testData.loc[:, colName1] - number
 
             elif mode == "*":
 
                 data[colName] = data.loc[:, colName1] * number
 
-                testData[colName] = testData.loc[:, colName1] * number
+                if not testData is None:
+                    testData[colName] = testData.loc[:, colName1] * number
 
             elif mode == "/":
 
@@ -1534,7 +1629,9 @@ def colbyNumCalculation(data, testData):
 
                 data[colName] = data.loc[:, colName1] / number
 
-                testData[colName] = testData.loc[:, colName1] / number
+                if not testData is None:
+
+                    testData[colName] = testData.loc[:, colName1] / number
 
 
 
@@ -1587,6 +1684,8 @@ def hardIndexing(data, testData):
 
             colAll = True
 
+            break
+
         colList.append(col)
         sdiv()
 
@@ -1612,6 +1711,8 @@ def hardIndexing(data, testData):
 
             rowAll = True
 
+            break
+
 
         rowList.append(row)
         sdiv()
@@ -1626,20 +1727,88 @@ def hardIndexing(data, testData):
 
         data = data.loc[rowList, colList]
 
-        testData = testData.loc[rowList, colList]
+        if not testData is None:
+
+            testData = testData.loc[rowList, colList]
 
     elif colAll:
 
         data = data.loc[rowList, :]
 
-        testData = testData.loc[rowList, :]
+        if not testData is None:
+
+            testData = testData.loc[rowList, :]
 
     elif rowAll:
 
         data = data.loc[:, colList]
 
-        testData = testData.loc[:, colList]
+        if not testData is None:
 
+            testData = testData.loc[:, colList]
+
+
+    return data, testData
+
+
+def groupBy(data, testData):
+
+
+    sdiv()
+
+    colList = []
+
+    while True:
+
+        print("column list / 열 목록")
+        print(data.columns)
+
+        col = input("Grouping column name (Enter to Exit) / 그룹으로 모을 때 기준이 될 칼럼 이름 (엔터로 나가기): ")
+
+        if col != "":
+
+            colList.append(col)
+
+        else:
+
+            break
+
+    sdiv()
+    command = input("me for mean of the group / std for standard deviation / co for count: \n"
+                    "그룹의 평균은 me / 그룹의 표준편차는 std / 그룹 내 원소 개수는 co: ")
+
+    if command == "me":
+
+        data = data.groupby(by=colList).mean()
+
+        try:
+            testData = testData.groupby(by=colList).mean()
+
+        except:
+
+            testData = None
+
+    elif command == "std":
+
+        data = data.groupby(by=colList).std()
+
+        try:
+            testData = testData.groupby(by=colList).std()
+
+        except:
+
+            testData = None
+
+    elif command == "co":
+
+        data = data.groupby(by=colList).count()
+
+        try:
+            testData = testData.groupby(by=colList).count()
+
+        except:
+
+            testData = None
 
     return data, testData
 
