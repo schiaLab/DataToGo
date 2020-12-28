@@ -1291,13 +1291,15 @@ def autoEncoder(data, model=None, scaler=None):
 
         data2 = data2 - encoder.predict(data)
 
+        data2 = pd.DataFrame(data2)
+
         return (encoder, ss, data2)
 
     else:
 
         data2 = scaler.transform(data)
 
-
+        data2 = pd.DataFrame(data2)
 
         return (model, scaler, data2 - model.predict(data2))
 
@@ -1322,18 +1324,21 @@ def normalizing(data, model=None):
             model = RobustScaler()
 
             data = model.fit_transform(data)
+            data = pd.DataFrame(data)
 
         elif mode == "minmax":
 
             model = MinMaxScaler()
 
             data = model.fit_transform(data)
+            data = pd.DataFrame(data)
 
         elif mode == "stand":
 
             model = StandardScaler()
 
             data = model.fit_transform(data)
+            data = pd.DataFrame(data)
 
         return (data, model)
 
@@ -1341,6 +1346,7 @@ def normalizing(data, model=None):
     else:
 
         data = model.transform(data)
+        data = pd.DataFrame(data)
 
 
         return (data, model)
@@ -1360,11 +1366,14 @@ def oneHotEncoder(data, model=None):
 
         data = model.fit_transform(data).toarray()
 
+        data = pd.DataFrame(data)
+
         return (data, model)
 
     else:
 
         data = model.transform(data).toarray()
+        data = pd.DataFrame(data)
 
 
         return (data, model)
