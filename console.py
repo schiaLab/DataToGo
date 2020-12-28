@@ -5,7 +5,7 @@ import sys
 
 lid = None
 
-ver = "0.0.4"
+ver = "0.0.6"
 
 
 questionNumDict = {"main":1}

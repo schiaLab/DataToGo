@@ -250,6 +250,12 @@ def dataPreprocessingInterface(dataWareHouse):
                             continue
 
 
+                elif command2 == "":
+
+                    break
+
+                else:
+
                     break
 
 
@@ -271,9 +277,15 @@ def dataPreprocessingInterface(dataWareHouse):
                     dataWareHouse.modelDict[tag].append(ss)
                     dataWareHouse.modelDict[tag].append(encoder)
 
+                    data = pd.DataFrame(data)
+
+
+
                     try:
 
                         data2 = autoEncoder(data2, model=encoder, scaler=ss)
+
+                        data2 = pd.DataFrame(data2)
 
                         break
 
@@ -313,9 +325,13 @@ def dataPreprocessingInterface(dataWareHouse):
 
                     dataWareHouse.modelDict[tag].append(scaler)
 
+                    data = pd.DataFrame(data)
+
                     try:
 
                         data2 = normalizing(data2, model=scaler)
+
+                        data2 = pd.DataFrame(data2)
 
                         break
 
@@ -332,9 +348,13 @@ def dataPreprocessingInterface(dataWareHouse):
 
                     dataWareHouse.modelDict[tag].append(ohe)
 
+                    data = pd.DataFrame(data)
+
                     try:
 
                         data2 = oneHotEncoder(data2, model=ohe)
+
+                        data2 = pd.DataFrame(data2)
 
                         break
 
@@ -392,7 +412,11 @@ def dataPreprocessingInterface(dataWareHouse):
 
                     data3, model = pca(data)
 
+                    data3 = pd.DataFrame(data3)
+
                     data4, model = pca(data2, model)
+
+                    data4 = pd.DataFrame(data4)
 
                     dataWareHouse.modelDict[tag].append(model)
 
@@ -1853,6 +1877,7 @@ def pca(data, model=None):
         model = PCA(n_components=n)
 
         data = model.fit_transform(data)
+
 
         print("")
 
