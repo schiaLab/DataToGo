@@ -5,7 +5,7 @@ import sys
 
 lid = None
 
-ver = "0.0.6"
+ver = "0.0.8"
 
 
 questionNumDict = {"main":1}
@@ -163,4 +163,8 @@ while True:
     if command2 == "exit":
 
         break
+
+    else:
+
+        mainData.dataDict = mainData.beforeSplitDict
 
