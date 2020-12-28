@@ -5,7 +5,6 @@ from sklearn.ensemble import RandomForestRegressor as rfr
 from sklearn.neighbors import KNeighborsClassifier as knc
 from sklearn.neighbors import KNeighborsRegressor as knr
 from sklearn.metrics import classification_report
-from sklearn.metrics import regression
 from keras import models
 from keras import layers
 
