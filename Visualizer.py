@@ -256,17 +256,37 @@ def functionNumGenerator(lid):
 
         var = input("분석할 특성(열)의 개수가 몇 개입니까? (1개:o / 2개:t /n개:n /전부:a (3개: 미개발. 지원예정)): ")
 
-        if var == "a":
+        while True:
 
-            type = input("분석하고 특징이 무엇입니까? (피어슨 상관계수: p/ 열과 행에 따른 값의 크기(데이터가 모두 숫자여야만 가능): n): ")
+            if var == "a":
 
-        elif var == "n":
+                type = input("분석하고 특징이 무엇입니까? (피어슨 상관계수: p/ 열과 행에 따른 값의 크기(데이터가 모두 숫자여야만 가능): n): ")
 
-            type = input("분석하고 싶은 2차원 차트 형태가 무엇입니까? (시계열:l): ")
+                break
 
-        else:
+            elif var == "n":
 
-            type = input("분석하고 싶은 2차원 차트 형태가 무엇입니까? (분포:d / 2차원 산점도:s): ")
+                type = input("분석하고 싶은 2차원 차트 형태가 무엇입니까? (시계열:l): ")
+
+                break
+
+            elif var == "t":
+
+                type = input("분석하고 싶은 2차원 차트 형태가 무엇입니까? (분포:d / 2차원 산점도:s): ")
+
+                break
+
+            elif var == "o":
+
+                type = input("분석하고 싶은 2차원 차트 형태가 무엇입니까? (분포:d / 시계열:l): ")
+
+                break
+
+            else:
+
+                print("잘못된 입력")
+
+                continue
 
 
 
@@ -280,17 +300,37 @@ def functionNumGenerator(lid):
 
         var = input("How many features do you need for analysis? (one: o / two: t / all: a (three: working on it!)): ")
 
-        if var == "a":
+        while True:
 
-            type = input("What attribute you want to know? (Pearson Correlation Coefficient: p/ normal value size (dataset should be all numbers): n): ")
+            if var == "a":
 
-        elif var == "n":
+                type = input("What attribute you want to know? (Pearson Correlation Coefficient: p/ normal value size (dataset should be all numbers): n): ")
 
-            type = input("What type of figure do you need? (time series: l): ")
+                break
 
-        else:
+            elif var == "n":
 
-            type = input("What type of figure do you need? (distribution: d / time series: l / scatter: s): ")
+                type = input("What type of figure do you need? (time series: l): ")
+
+                break
+
+            elif var == "t":
+
+                type = input("What type of figure do you need? (distribution: d / scatter: s): ")
+
+                break
+
+            elif var == "o":
+
+                type = input("What type of figure do you need? (distribution: d / time series: l): ")
+
+                break
+
+            else:
+
+                print("Wrong Input")
+
+                continue
 
 
 
@@ -410,7 +450,11 @@ def projectRun(lid, dataWareHouse):
 
             continue
 
+
+
     instruction(functionNum, lid)
+
+    print(data.columns)
 
     paraList = questionCall(functionNum, lid)
 

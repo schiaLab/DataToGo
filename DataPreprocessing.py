@@ -31,6 +31,13 @@ def dataWareHouseControl(dataWareHouse):
 
     while True:
 
+
+        div()
+
+        print("Dataset Management / 데이터셋 관리")
+
+        sdiv()
+
         command = input("me for merging dataset/ de for deleting dataset / ch for chaning tag (Enter to Exit): \n"
                         "데이터셋 병합은 me / 데이터셋 제거는 de / 데이터셋 태그 변경은 ch (엔터로 종료): ")
 
@@ -1072,7 +1079,7 @@ def boolMasking(data, testData):
 
         data2 = data.loc[data.loc[:, columnName] == condition]
 
-        testData2 = testData.loc[data.loc[:, columnName] == condition]
+        testData2 = testData.loc[testData.loc[:, columnName] == condition]
 
         print("Filtering complete. Displaying result... / 필터링 완료. 결과 송출중: \n")
 

@@ -5,7 +5,7 @@ import sys
 
 lid = None
 
-ver = "0.0.8"
+ver = "0.0.9"
 
 
 questionNumDict = {"main":1}
@@ -166,5 +166,11 @@ while True:
 
     else:
 
-        mainData.dataDict = mainData.beforeSplitDict
+        if not mainData.beforeSplitDict:
+
+            continue
+
+        else:
+
+            mainData.dataDict = mainData.beforeSplitDict
 
